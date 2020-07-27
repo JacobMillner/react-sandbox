@@ -6,7 +6,9 @@ const App = () => {
   return (
     <div>
       <h1 id="something-important">Adopt me!</h1>
-      <SearchParams />
+      <React.StrictMode>
+        <SearchParams />
+      </React.StrictMode>
     </div>
   );
 };
