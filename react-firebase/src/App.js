@@ -1,4 +1,4 @@
-import { onSnapshot, collection, setDoc, doc } from "firebase/firestore";
+import { onSnapshot, collection, addDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import db from "./firebase";
 
@@ -26,9 +26,13 @@ function App() {
   );
 
   const handleNew = async () => {
-    const docRef = doc(db, "colors", "color001");
-    const payload = { name: "black", value: "#000" };
-    await setDoc(docRef, payload);
+    const name = prompt("Enter color name");
+    const value = prompt("Enter color value");
+
+    const collectionRef = collection(db, "colors");
+    const payload = { name, value };
+    const docRef = await addDoc(collectionRef, payload);
+    console.log("The new id is", docRef.id);
   };
 
   return (
