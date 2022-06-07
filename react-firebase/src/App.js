@@ -1,7 +1,7 @@
 import { onSnapshot, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import db from "./firebase";
-import { handleNew, handleEdit } from "./utils";
+import { handleNew, handleEdit, handleDelete } from "./utils";
 import Dot from "./Dot";
 
 function App() {
@@ -23,9 +23,8 @@ function App() {
       <ul>
         {colors.map((color) => (
           <li key={color.id}>
-            <a href="#" onClick={() => handleEdit(color.id)}>
-              edit
-            </a>
+            <button className="button2" onClick={() => handleEdit(color.id)}>edit</button>
+            <button className="button2" onClick={() => handleDelete(color.id)}>delete</button>
             <Dot color={color.value} /> {color.name}
           </li>
         ))}

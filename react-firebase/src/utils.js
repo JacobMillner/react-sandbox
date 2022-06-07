@@ -1,4 +1,4 @@
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, deleteDoc } from "firebase/firestore";
 import db from "./firebase";
 
 export const handleNew = async () => {
@@ -19,3 +19,8 @@ export const handleEdit = async (id) => {
   const payload = { name, value };
   setDoc(docRef, payload);
 };
+
+export const handleDelete = async (id) => {
+  const docRef = doc(db, "colors", id);
+  await deleteDoc(docRef);
+}
